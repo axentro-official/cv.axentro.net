@@ -1,5 +1,5 @@
 /* ============================================
-   AHMED HAMOUDA — PREMIUM RESUME v3.0
+   AHMED HAMOUDA — PREMIUM RESUME v4.0
    Pure Vanilla JS · Performance-First
    ============================================ */
 
@@ -58,7 +58,7 @@
     menuToggle.classList.add('active');
     menuToggle.setAttribute('aria-expanded', 'true');
     const navHeight = nav.offsetHeight;
-    navDropdown.style.height = (navHeight + 60) + 'px';
+    navDropdown.style.height = (navHeight + 60) + 'px'; // 60 = margin-top
     document.body.style.overflow = 'hidden';
   }
 
@@ -127,8 +127,8 @@
   /* ---------- Typing Effect ---------- */
   const typingEl = document.getElementById('typingText');
   const roles = [
-    'Customer Operations Professional',
-    'Accounts Receivable Specialist',
+    'Senior Collections Specialist',
+    'Accounts Receivable Expert',
     'AI-Assisted Business Systems Developer',
     'Founder of Axentro'
   ];
@@ -315,8 +315,20 @@
   /* ---------- Download CV Button Feedback ---------- */
   const downloadBtn = document.getElementById('downloadCvBtn');
   if (downloadBtn) {
-    downloadBtn.addEventListener('click', () => {
-      showToast('Preparing CV download...');
+    downloadBtn.addEventListener('click', (e) => {
+      // Allow the default download behavior to proceed
+      // But provide UI feedback
+      downloadBtn.classList.add('is-downloading');
+      const textEl = downloadBtn.querySelector('.btn-text');
+      const originalText = textEl.textContent;
+      textEl.textContent = 'Downloaded!';
+      
+      showToast('CV download started. Check your browser.');
+
+      setTimeout(() => {
+        downloadBtn.classList.remove('is-downloading');
+        textEl.textContent = originalText;
+      }, 3000);
     });
   }
 
